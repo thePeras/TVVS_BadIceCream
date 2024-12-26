@@ -39,3 +39,5 @@ java/build/**
 # Other generated folders
 htmlReport/
 .jqwik-database
+tsdetector-input.csv
+tsdetector-output.csv
