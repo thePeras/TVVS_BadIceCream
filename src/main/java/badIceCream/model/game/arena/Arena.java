@@ -229,6 +229,7 @@ public class Arena {
         boolean first = true;
         Position pos = new Position(iceCream.getPosition().getX() + deltaX, iceCream.getPosition().getY() + deltaY);
 
+        // BUG DETECTED: The while loop does not check arena boundaries
         while (isEmptyMonsters(pos) && !isHotFloor(pos)) {
             if (first) {
                 AudioController.playBuildWallSound();
