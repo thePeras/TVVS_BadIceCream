@@ -75,7 +75,7 @@ public class StepMonstersTest {
     static Arena setupArena(List<Wall> walls) {
         Arena arena = new Arena(3, 3);
         arena.setWalls(walls);
-        arena.setIceCream(new IceCream(0, 0));
+        arena.setIceCream(new IceCream(1, 1));
         return arena;
     }
 
@@ -93,6 +93,6 @@ public class StepMonstersTest {
 
     @Provide
     public Arbitrary<StepMonsters> movementStrategies() {
-        return Arbitraries.of(new DefaultMovement(), new RunnerMovementDisabled(), new JumperMovement(), new WallBreakerMovement());
+        return Arbitraries.of(new DefaultMovement(), new RunnerMovementDisabled(), new JumperMovement(), new WallBreakerMovement(), new RunnerMovementEnabled());
     }
 }
