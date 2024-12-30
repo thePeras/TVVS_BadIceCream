@@ -4,6 +4,9 @@ import badIceCream.GUI.Graphics;
 import badIceCream.model.game.elements.Wall;
 import badIceCream.model.game.elements.fruits.Fruit;
 import net.jqwik.api.*;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
