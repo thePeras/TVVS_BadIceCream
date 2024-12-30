@@ -1,6 +1,7 @@
 package badIceCream.model.game.elements;
 
 import badIceCream.GUI.GUI;
+import badIceCream.model.Position;
 import net.jqwik.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -44,5 +45,12 @@ public class IceCreamTest {
         IceCream iceCream = new IceCream(0, 0);
         iceCream.setLastMovement(action);
         assertEquals(action, iceCream.getLastMovement());
+    }
+
+    @Test
+    void testSetPosition() {
+        IceCream iceCream = new IceCream(0, 0);
+        iceCream.setPosition(new Position(1, 1));
+        assertEquals(new Position(1, 1), iceCream.getPosition());
     }
 }

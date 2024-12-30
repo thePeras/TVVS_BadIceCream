@@ -1,12 +1,9 @@
 package badIceCream.controller.game.monsters;
 
-import badIceCream.controller.game.StepMonsters;
 import badIceCream.model.Position;
 import badIceCream.model.game.arena.Arena;
 import badIceCream.model.game.elements.IceCream;
-import badIceCream.model.game.elements.StoneWall;
 import badIceCream.model.game.elements.monsters.Monster;
-import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Test;
 

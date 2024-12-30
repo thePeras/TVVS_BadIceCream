@@ -239,5 +239,4 @@ class GraphicsTest {
         verify(textGraphics, times(1)).setForegroundColor(eq(TextColor.Factory.fromString("#FF0000")));
         verify(textGraphics, times(1)).putString(eq(position.getX()), eq(position.getY()), eq("Hello"));
     }
-
 }
