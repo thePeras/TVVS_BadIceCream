@@ -31,3 +31,8 @@ Fortunatelly, the dead code was public methods that can be tested directly.
 ### Challenge 7: printStackTrace()
 
 Mutation failed to kill the mutant that removed the printStackTrace().
+
+
+### Challenge 8: Random()
+
+Random without seed and depency injection is unpredictable to test.

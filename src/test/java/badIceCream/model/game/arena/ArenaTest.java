@@ -1,5 +1,6 @@
 package badIceCream.model.game.arena;
 
+import badIceCream.audio.AudioController;
 import badIceCream.model.Position;
 import badIceCream.model.game.elements.*;
 import badIceCream.model.game.elements.fruits.*;
@@ -8,12 +9,13 @@ import badIceCream.model.game.elements.monsters.*;
 import badIceCream.GUI.GUI;
 import net.jqwik.api.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.*;
 
-//TODO: Improve this code
 public class ArenaTest {
     @Property
     void testArenaInitialization(@ForAll int width, @ForAll int height) {
@@ -34,32 +36,14 @@ public class ArenaTest {
         arena.setFruits(new ArrayList<>());
         arena.generateNewFruits(level);
 
+        if(level == 6) return;
+
         List<Fruit> fruits = arena.getFruits();
-        int expectedFruitCount = getExpectedFruitCountForLevel(level);
+        final int[] expectedFruitCounts = {6, 8, 10, 12, 14};
+        assertEquals(expectedFruitCounts[level-1], fruits.size());
 
-        assertEquals(expectedFruitCount, fruits.size());
-        if (level == 1) {
-            assertTrue(fruits.stream().allMatch(f -> f instanceof AppleFruit));
-        } else if (level == 2) {
-            assertTrue(fruits.stream().allMatch(f -> f instanceof CherryFruit));
-        } else if (level == 3) {
-            assertTrue(fruits.stream().allMatch(f -> f instanceof PineappleFruit));
-        } else if (level == 4) {
-            assertTrue(fruits.stream().allMatch(f -> f instanceof BananaFruit));
-        } else if (level == 5) {
-            assertTrue(fruits.stream().allMatch(f -> f instanceof AppleFruit));
-        }
-    }
-
-    private int getExpectedFruitCountForLevel(int level) {
-        return switch (level) {
-            case 1 -> 6;
-            case 2 -> 8;
-            case 3 -> 10;
-            case 4 -> 12;
-            case 5 -> 14;
-            default -> 0;
-        };
+        final Class<?>[] expectedFruitClasses = {AppleFruit.class, CherryFruit.class, PineappleFruit.class, BananaFruit.class, AppleFruit.class};
+        assertTrue(fruits.stream().allMatch(f -> f.getClass().equals(expectedFruitClasses[level - 1])));
     }
 
     @Property
@@ -112,11 +96,9 @@ public class ArenaTest {
         arena.setWalls(new ArrayList<>(List.of(wall)));
 
         arena.iceWallDestroyed(new Position(x, y));
-
         assertTrue(arena.getWalls().isEmpty());
 
         arena.iceWallDestroyed(new Position(x, y));
-
         assertTrue(arena.getWalls().isEmpty());
     }
 
@@ -143,19 +125,19 @@ public class ArenaTest {
         assertNull(arena.hasMonster(emptyPos));
     }
 
-    @Property
-    void testEatFruit(@ForAll int x, @ForAll int y) {
+    @Test
+    void testEatFruit() {
         Arena arena = new Arena(10, 10);
-        Fruit fruit = new AppleFruit(x, y);
-        arena.setFruits(new ArrayList<>(List.of(fruit)));
+        Fruit fruit = new AppleFruit(1,1);
+        arena.setFruits(new ArrayList<>(List.of(fruit, new AppleFruit(0, 0))));
 
-        Position fruitPos = new Position(x, y);
+        Position fruitPos = new Position(1, 1);
         int fruitType = arena.eatFruit(fruitPos);
         assertEquals(1, fruitType);
 
-        assertTrue(arena.getFruits().isEmpty());
+        assertTrue(arena.getFruits().size() == 1);
 
-        Position nonFruitPos = new Position(x + 1, y + 1);
+        Position nonFruitPos = new Position(2, 2);
         assertEquals(-1, arena.eatFruit(nonFruitPos));
     }
 
@@ -242,48 +224,62 @@ public class ArenaTest {
 
     @Property
     void testPowerIceCream(@ForAll("movements") GUI.ACTION action, @ForAll boolean wallToDestroy){
+        try(MockedStatic<AudioController> audioController = mockStatic(AudioController.class)) {
+            Arena arena = getArena(action, wallToDestroy);
+
+            arena.powerIceCream(action);
+
+            if(action == GUI.ACTION.NONE) return;
+            if(wallToDestroy){
+                assertTrue(arena.getWalls().isEmpty());
+                audioController.verify(AudioController::playBreakWallSound, times(1));
+            } else {
+                assertFalse(arena.getWalls().isEmpty());
+                audioController.verify(AudioController::playBuildWallSound, times(1));
+                if(action == GUI.ACTION.UP) assertTrue(arena.isIceWall(new Position(5, 3)));
+                if(action == GUI.ACTION.LEFT) assertTrue(arena.isIceWall(new Position(3, 5)));
+            }
+        }
+    }
+
+    private static Arena getArena(GUI.ACTION action, boolean wallToDestroy) {
         Arena arena = new Arena(10, 10);
         IceCream iceCream = new IceCream(5, 5);
         arena.setIceCream(iceCream);
-        Wall wall1 = new IceWall(5, 0);
-        Wall wall2 = new IceWall(5, 10);
-        Wall wall3 = new IceWall(0, 5);
-        Wall wall4 = new IceWall(10, 5);
-        arena.setWalls(new ArrayList<>(List.of(wall1, wall2, wall3, wall4)));
+        arena.setWalls(new ArrayList<>(List.of(new IceWall(5, 0), new IceWall(5, 10), new IceWall(0, 5), new IceWall(10, 5))));
         arena.setMonsters(new ArrayList<>());
         arena.setHotFloors(new ArrayList<>());
 
-        Wall wall = new IceWall(0, 0);
-        if (action == GUI.ACTION.UP) {
-            wall = new IceWall(5, 4);
-        } else if (action == GUI.ACTION.DOWN) {
-            wall = new IceWall(5, 6);
-        } else if (action == GUI.ACTION.LEFT) {
-            wall = new IceWall(4, 5);
-        } else if (action == GUI.ACTION.RIGHT) {
-            wall = new IceWall(6, 5);
-        }
-        if(wallToDestroy) {
-            arena.setWalls(new ArrayList<>(List.of(wall)));
-        }
-
-        arena.powerIceCream(action);
-
         if(wallToDestroy){
-            assertFalse(arena.getWalls().contains(wall));
-        } else {
-            assertTrue(arena.isIceWall(wall.getPosition()));
+            switch(action) {
+                case UP -> arena.setWalls(new ArrayList<>(List.of(new IceWall(5, 4), new IceWall(5, 3))));
+                case DOWN -> arena.setWalls(new ArrayList<>(List.of(new IceWall(5, 6))));
+                case LEFT -> arena.setWalls(new ArrayList<>(List.of(new IceWall(4, 5), new IceWall(3, 5))));
+                case RIGHT -> arena.setWalls(new ArrayList<>(List.of(new IceWall(6, 5))));
+                default -> arena.setWalls(new ArrayList<>(List.of(new IceWall(0,0))));
+            }
         }
+        return arena;
+    }
+
+    @Test
+    void testNotEmptySpawnFruit(){
+        Arena arena = new Arena(2, 2);
+        arena.setWalls(new ArrayList<>(List.of(new IceWall(0, 1), new StoneWall(1, 1))));
+        arena.setFruits(new ArrayList<>(List.of(new AppleFruit(0, 0))));
+        assertFalse(arena.isEmptySpawnFruit(new Position(1, 1)));
+        assertTrue(arena.isEmptySpawnFruit(new Position(0, 1)));
+        assertFalse(arena.isEmptySpawnFruit(new Position(0, 0)));
     }
 
     @Provide
     Arbitrary<Integer> levels() {
-        return Arbitraries.of(1, 2, 3, 4, 5);
+        return Arbitraries.of(1, 2, 3, 4, 5, 6);
     }
 
     @Provide
     Arbitrary<GUI.ACTION> movements() {
-        return Arbitraries.of(GUI.ACTION.UP, GUI.ACTION.DOWN, GUI.ACTION.LEFT, GUI.ACTION.RIGHT);
+        return Arbitraries.of(GUI.ACTION.UP, GUI.ACTION.DOWN, GUI.ACTION.LEFT, GUI.ACTION.RIGHT, GUI.ACTION.NONE);
     }
 
     @Provide
