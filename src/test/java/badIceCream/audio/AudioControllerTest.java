@@ -9,7 +9,7 @@ import javax.sound.sampled.*;
 
 import static org.mockito.Mockito.*;
 
-public class AudioControllerStartsTest {
+public class AudioControllerTest {
     private MockedStatic<Audio> audioMockedStatic;
     private Clip mockClip;
 

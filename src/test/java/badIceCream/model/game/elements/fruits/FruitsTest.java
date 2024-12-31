@@ -1,4 +1,5 @@
 package badIceCream.model.game.elements.fruits;
+
 import net.jqwik.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,6 @@
 package badIceCream.controller.game.monsters;
 
 import static org.mockito.Mockito.*;
-import static org.assertj.core.api.Assertions.*;
 import badIceCream.model.game.arena.Arena;
 import badIceCream.model.game.elements.monsters.Monster;
 import org.junit.jupiter.api.Test;

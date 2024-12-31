@@ -2,9 +2,7 @@ package badIceCream.viewer;
 
 import badIceCream.GUI.Graphics;
 import badIceCream.model.game.elements.IceCream;
-import badIceCream.model.game.elements.fruits.Fruit;
 import net.jqwik.api.*;
-
 import static org.mockito.Mockito.*;
 
 public class IceCreamViewerTest {

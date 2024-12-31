@@ -4,7 +4,6 @@ import badIceCream.model.Position;
 import badIceCream.model.game.arena.Arena;
 import badIceCream.model.game.elements.IceCream;
 import badIceCream.model.game.elements.IceWall;
-import badIceCream.model.game.elements.StoneWall;
 import badIceCream.model.game.elements.Wall;
 import badIceCream.model.game.elements.monsters.Monster;
 import org.junit.jupiter.api.Test;

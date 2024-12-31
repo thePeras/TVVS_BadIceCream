@@ -2,8 +2,6 @@ package badIceCream.controller.menu;
 
 import badIceCream.GUI.GUI;
 import badIceCream.Game;
-import badIceCream.model.game.arena.Arena;
-import badIceCream.model.game.arena.LoaderArenaBuilder;
 import badIceCream.model.menu.LevelCompletedMenu;
 import badIceCream.states.GameState;
 import badIceCream.states.LevelCompletedMenuState;
@@ -20,7 +18,6 @@ public class LevelCompletedMenuControllerTest {
 
     private LevelCompletedMenuController controller;
     private LevelCompletedMenu model;
-    private LevelCompletedMenuState state;
     private Game game;
     private GUI.ACTION action;
 
@@ -28,7 +25,7 @@ public class LevelCompletedMenuControllerTest {
     public void setUp() {
         model = mock(LevelCompletedMenu.class);
         game = mock(Game.class);
-        state = mock(LevelCompletedMenuState.class);
+        LevelCompletedMenuState state = mock(LevelCompletedMenuState.class);
         when(state.getLevel()).thenReturn(1);
         when(game.getState()).thenReturn(state);
         controller = new LevelCompletedMenuController(model);

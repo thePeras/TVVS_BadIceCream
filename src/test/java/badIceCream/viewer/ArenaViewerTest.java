@@ -11,7 +11,6 @@ import badIceCream.model.game.elements.fruits.Fruit;
 import badIceCream.model.game.elements.monsters.Monster;
 import net.jqwik.api.*;
 import net.jqwik.api.lifecycle.BeforeProperty;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;

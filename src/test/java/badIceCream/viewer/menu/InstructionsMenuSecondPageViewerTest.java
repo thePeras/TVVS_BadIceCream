@@ -11,12 +11,11 @@ import static org.mockito.Mockito.*;
 public class InstructionsMenuSecondPageViewerTest {
 
     private InstructionsMenuSecondPageViewer viewer;
-    private InstructionsMenuSecondPage menu;
     private Graphics graphics;
 
     @BeforeEach
     public void setUp() {
-        menu = Mockito.mock(InstructionsMenuSecondPage.class);
+        InstructionsMenuSecondPage menu = Mockito.mock(InstructionsMenuSecondPage.class);
         graphics = Mockito.mock(Graphics.class);
         viewer = new InstructionsMenuSecondPageViewer(menu);
     }

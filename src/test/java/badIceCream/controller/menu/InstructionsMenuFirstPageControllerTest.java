@@ -17,13 +17,12 @@ import java.io.IOException;
 public class InstructionsMenuFirstPageControllerTest {
 
     private InstructionsMenuFirstPageController controller;
-    private InstructionsMenuFirstPage model;
     private Game game;
     private GUI.ACTION action;
 
     @BeforeEach
     public void setUp() {
-        model = mock(InstructionsMenuFirstPage.class);
+        InstructionsMenuFirstPage model = mock(InstructionsMenuFirstPage.class);
         game = mock(Game.class);
         when(game.getState()).thenReturn(new InstructionsMenuFirstPageState(model, 1));
         controller = new InstructionsMenuFirstPageController(model);

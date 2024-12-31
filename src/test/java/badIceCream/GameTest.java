@@ -6,7 +6,6 @@ import badIceCream.utils.Type;
 import net.jqwik.api.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
-
 import java.awt.*;
 import java.io.IOException;
 

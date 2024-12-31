@@ -12,12 +12,11 @@ import static org.mockito.Mockito.*;
 public class LevelCompletedMenuViewerTest {
 
     private LevelCompletedMenuViewer viewer;
-    private LevelCompletedMenu menu;
     private Graphics graphics;
 
     @BeforeEach
     public void setUp() {
-        menu = new LevelCompletedMenu();
+        LevelCompletedMenu menu = new LevelCompletedMenu();
         graphics = Mockito.mock(Graphics.class);
         viewer = new LevelCompletedMenuViewer(menu);
     }

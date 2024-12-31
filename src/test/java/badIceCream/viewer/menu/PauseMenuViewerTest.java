@@ -12,12 +12,11 @@ import static org.mockito.Mockito.*;
 public class PauseMenuViewerTest {
 
     private PauseMenuViewer viewer;
-    private PauseMenu menu;
     private Graphics graphics;
 
     @BeforeEach
     public void setUp() {
-        menu = new PauseMenu();
+        PauseMenu menu = new PauseMenu();
         graphics = Mockito.mock(Graphics.class);
         viewer = new PauseMenuViewer(menu);
     }

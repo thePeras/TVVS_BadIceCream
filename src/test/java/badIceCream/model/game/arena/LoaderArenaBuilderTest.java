@@ -1,15 +1,12 @@
 package badIceCream.model.game.arena;
 
 import badIceCream.model.Position;
-import badIceCream.model.game.elements.IceCream;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

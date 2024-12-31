@@ -1,10 +1,7 @@
 package badIceCream.viewer;
 
-import badIceCream.GUI.GUI;
 import badIceCream.GUI.Graphics;
-import badIceCream.model.Position;
 import badIceCream.model.game.elements.fruits.Fruit;
-import badIceCream.model.game.elements.monsters.Monster;
 import net.jqwik.api.*;
 
 import static org.mockito.Mockito.*;

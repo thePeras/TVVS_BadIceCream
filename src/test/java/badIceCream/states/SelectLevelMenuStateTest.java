@@ -1,10 +1,7 @@
 package badIceCream.states;
 
-import badIceCream.controller.game.ArenaController;
 import badIceCream.controller.menu.SelectLevelMenuController;
-import badIceCream.model.game.arena.Arena;
 import badIceCream.model.menu.SelectLevelMenu;
-import badIceCream.viewer.ArenaViewer;
 import badIceCream.viewer.menu.SelectLevelMenuViewer;
 import org.junit.jupiter.api.Test;
 

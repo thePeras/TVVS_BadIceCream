@@ -2,7 +2,6 @@ package badIceCream.viewer;
 
 import badIceCream.GUI.Graphics;
 import badIceCream.model.game.elements.HotFloor;
-import badIceCream.model.game.elements.IceCream;
 import net.jqwik.api.*;
 
 import static org.mockito.Mockito.*;

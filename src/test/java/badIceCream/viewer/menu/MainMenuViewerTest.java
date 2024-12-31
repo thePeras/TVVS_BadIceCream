@@ -12,12 +12,11 @@ import static org.mockito.Mockito.*;
 public class MainMenuViewerTest {
 
     private MainMenuViewer viewer;
-    private MainMenu menu;
     private Graphics graphics;
 
     @BeforeEach
     public void setUp() {
-        menu = new MainMenu();
+        MainMenu menu = new MainMenu();
         graphics = Mockito.mock(Graphics.class);
         viewer = new MainMenuViewer(menu);
     }

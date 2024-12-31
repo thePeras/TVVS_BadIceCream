@@ -12,12 +12,11 @@ import static org.mockito.Mockito.*;
 public class SelectLevelMenuViewerTest {
 
     private SelectLevelMenuViewer viewer;
-    private SelectLevelMenu menu;
     private Graphics graphics;
 
     @BeforeEach
     public void setUp() {
-        menu = new SelectLevelMenu();
+        SelectLevelMenu menu = new SelectLevelMenu();
         graphics = Mockito.mock(Graphics.class);
         viewer = new SelectLevelMenuViewer(menu);
     }
