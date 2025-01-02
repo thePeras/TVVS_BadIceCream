@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Controller.java</h1>
+
+<table class="src">
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package badIceCream.controller;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import badIceCream.GUI.GUI;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import badIceCream.Game;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public abstract class Controller&#60;T&#62; {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private final T model;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public Controller(T model) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.model = model;</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public T getModel() {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_17'/>
+17
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_17'>1</a>
+<span>
+1. getModel : replaced return value with null for badIceCream/controller/Controller::getModel &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return model;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void step(Game game, GUI.ACTION action, long time) throws IOException;</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    public void stepMonsters(long time) throws IOException {}</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3c9e06d7_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3c9e06d7_17'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getModel<br/><b>Killed by : </b>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithDownAction()]</span></span> replaced return value with null for badIceCream/controller/Controller::getModel &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>badIceCream.controller.menu.GameOverMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.GameOverMenuControllerTest]/[method:testStepWithDownAction()] (0 ms)</li><li>badIceCream.controller.menu.GameOverMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.GameOverMenuControllerTest]/[method:testStepWithUpAction()] (0 ms)</li><li>badIceCream.controller.menu.LevelCompletedMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.LevelCompletedMenuControllerTest]/[method:testStepWithUpAction()] (0 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithRightAction()] (0 ms)</li><li>badIceCream.controller.menu.LevelCompletedMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.LevelCompletedMenuControllerTest]/[method:testStepWithDownAction()] (0 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithLeftAction()] (0 ms)</li><li>badIceCream.controller.menu.PauseMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.PauseMenuControllerTest]/[method:testStepWithDownAction()] (0 ms)</li><li>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithUpAction()] (0 ms)</li><li>badIceCream.controller.menu.PauseMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.PauseMenuControllerTest]/[method:testStepWithUpAction()] (0 ms)</li><li>badIceCream.controller.menu.LevelCompletedMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.LevelCompletedMenuControllerTest]/[method:testStepWithSelectActionUnhandled()] (0 ms)</li><li>badIceCream.controller.game.IceCreamControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.IceCreamControllerTest]/[method:testEatFruit()] (0 ms)</li><li>badIceCream.controller.menu.GameOverMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.GameOverMenuControllerTest]/[method:testStepWithSelectActionUnhandled()] (0 ms)</li><li>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithDownAction()] (0 ms)</li><li>badIceCream.controller.menu.PauseMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.PauseMenuControllerTest]/[method:testStepWithSelectActionUnhandled()] (0 ms)</li><li>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithSelectActionExitSelected()] (0 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionUnhandled()] (0 ms)</li><li>badIceCream.controller.menu.GameOverMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.GameOverMenuControllerTest]/[method:testStepWithSelectActionQuitToMainMenuSelected()] (0 ms)</li><li>badIceCream.controller.menu.PauseMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.PauseMenuControllerTest]/[method:testStepWithSelectActionMenuSelected()] (0 ms)</li><li>badIceCream.controller.menu.LevelCompletedMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.LevelCompletedMenuControllerTest]/[method:testStepWithSelectActionQuitToMainMenuSelected()] (0 ms)</li><li>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithSelectActionInstructionsSelected()] (0 ms)</li><li>badIceCream.controller.game.IceCreamControllerTest.[engine:jqwik]/[class:badIceCream.controller.game.IceCreamControllerTest]/[property:testIceCreamMovements(badIceCream.GUI.GUI$ACTION)] (2 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepNormal()] (1 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepWhenIceCreamIsDead()] (1 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepWhenPaused()] (1 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepWithStrawberryTimeout()] (1 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepWithFruit()] (2 ms)</li><li>badIceCream.controller.menu.PauseMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.PauseMenuControllerTest]/[method:testStepWithSelectActionResumeSelected()] (15 ms)</li><li>badIceCream.controller.menu.MainMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.MainMenuControllerTest]/[method:testStepWithSelectActionStartSelected()] (14 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionLevel1Selected()] (0 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionLevel3Selected()] (1 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionLevel4Selected()] (1 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionLevel5Selected()] (1 ms)</li><li>badIceCream.controller.menu.SelectLevelMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.SelectLevelMenuControllerTest]/[method:testStepWithSelectActionLevel2Selected()] (15 ms)</li><li>badIceCream.controller.menu.GameOverMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.GameOverMenuControllerTest]/[method:testStepWithSelectActionPlayAgainSelected()] (19 ms)</li><li>badIceCream.controller.menu.LevelCompletedMenuControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.menu.LevelCompletedMenuControllerTest]/[method:testStepWithSelectActionNextLevelSelected()] (24 ms)</li><li>badIceCream.controller.game.ArenaControllerTest.[engine:junit-jupiter]/[class:badIceCream.controller.game.ArenaControllerTest]/[method:testStepWhenFruitsAreEmptyLevelCompleted()] (143 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.0
+
+</body>
+</html>

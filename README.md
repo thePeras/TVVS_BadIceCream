@@ -6,8 +6,8 @@ Read the [Project.md](docs/Project.md) file to learn more about the game.
 
 ## Current Reports
 
-- (future link)
-- (future link)
+- [Jacoco report](reports/jacoco/index.html)
+- [PITest report](reports/pitest/index.html)
 
 ## Evaluation Formula
 
