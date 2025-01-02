@@ -4,10 +4,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class GUITest {
@@ -21,22 +18,23 @@ public class GUITest {
         }
 
         @Override
-        protected Terminal createTerminal() throws IOException {
+        protected Terminal createTerminal(){
             return mockTerminal;
         }
     }
 
     @Test
-    void testCreateScreen() throws IOException {
-        Terminal mockTerminal = mock(Terminal.class);
-        TestableGUI testableGUI = new TestableGUI(mockTerminal);
+    void testCreateScreen(){
+        assertAll(() -> {
+            Terminal mockTerminal = mock(Terminal.class);
+            TestableGUI testableGUI = new TestableGUI(mockTerminal);
 
-        GUI gui = new MenuGraphics(10, 10);
+            GUI gui = new MenuGraphics(10, 10);
 
-        Screen screen = testableGUI.createScreen(gui.createTerminal());
+            Screen screen = testableGUI.createScreen(gui.createTerminal());
 
-        assertNotNull(screen);
-        assertNull(screen.getCursorPosition());
+            assertNotNull(screen);
+            assertNull(screen.getCursorPosition());
+        });
     }
-
 }

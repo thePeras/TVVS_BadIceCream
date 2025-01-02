@@ -86,157 +86,184 @@ class GraphicsTest {
     @Property
     void testDrawIceCream(@ForAll("validPositions") Position position,
                           @ForAll("actions") GUI.ACTION action,
-                          @ForAll boolean strawberry) throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.drawIceCream(position, action, strawberry);
+                          @ForAll boolean strawberry){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.drawIceCream(position, action, strawberry);
 
-        verifyDrawCharacter(position, strawberry ? "#48DEFF" : "#FFFFFF");
+            verifyDrawCharacter(position, strawberry ? "#48DEFF" : "#FFFFFF");
+        });
     }
 
     @Property
     void testDrawIceWall(@ForAll("validPositions") Position position,
-                         @ForAll("iceWallTypes") int type) throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.drawIceWall(position, type);
+                         @ForAll("iceWallTypes") int type){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.drawIceWall(position, type);
 
-        verifyDrawCharacter(position, "#87CEFA");
+            verifyDrawCharacter(position, "#87CEFA");
+        });
     }
 
     @Property
     void testDrawHotFloor(@ForAll("validPositions") Position position,
-                          @ForAll("hotFloorTypes") int type) throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.drawHotFloor(position, type);
+                          @ForAll("hotFloorTypes") int type){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.drawHotFloor(position, type);
 
-
-        verifyDrawCharacter(position, "#e14750");
+            verifyDrawCharacter(position, "#e14750");
+        });
     }
 
     @Property
     void testDrawDefaultMonster(@ForAll("validPositions") Position position,
-                                @ForAll("actions") GUI.ACTION action) throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.drawDefaultMonster(position, action);
+                                @ForAll("actions") GUI.ACTION action){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.drawDefaultMonster(position, action);
 
-        verifyDrawCharacter(position, "#00FF00");
+            verifyDrawCharacter(position, "#00FF00");
+        });
     }
 
     @Test
-    void testGetNextAction() throws IOException {
-        Graphics graphics = createGraphics();
-        Screen screen = graphics.getGui().createScreen(graphics.getGui().createTerminal());
+    void testGetNextAction(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Screen screen = graphics.getGui().createScreen(graphics.getGui().createTerminal());
 
-        KeyStroke[] keyStrokes = {
-                new KeyStroke(KeyType.ArrowDown, false, false),
-                new KeyStroke(KeyType.ArrowUp, false, false),
-                new KeyStroke(KeyType.ArrowRight, false, false),
-                new KeyStroke(KeyType.ArrowLeft, false, false),
-                new KeyStroke(KeyType.Enter, false, false),
-                new KeyStroke(KeyType.Escape, false, false),
-                new KeyStroke(' ', false, false),
-                null,
-                new KeyStroke(KeyType.Backspace, false, false),
-        };
+            KeyStroke[] keyStrokes = {
+                    new KeyStroke(KeyType.ArrowDown, false, false),
+                    new KeyStroke(KeyType.ArrowUp, false, false),
+                    new KeyStroke(KeyType.ArrowRight, false, false),
+                    new KeyStroke(KeyType.ArrowLeft, false, false),
+                    new KeyStroke(KeyType.Enter, false, false),
+                    new KeyStroke(KeyType.Escape, false, false),
+                    new KeyStroke(' ', false, false),
+                    null,
+                    new KeyStroke(KeyType.Backspace, false, false),
+            };
 
-        GUI.ACTION[] expectedActions = {
-                GUI.ACTION.DOWN,
-                GUI.ACTION.UP,
-                GUI.ACTION.RIGHT,
-                GUI.ACTION.LEFT,
-                GUI.ACTION.SELECT,
-                GUI.ACTION.PAUSE,
-                GUI.ACTION.SPACE,
-                GUI.ACTION.NONE,
-                GUI.ACTION.NONE,
-        };
+            GUI.ACTION[] expectedActions = {
+                    GUI.ACTION.DOWN,
+                    GUI.ACTION.UP,
+                    GUI.ACTION.RIGHT,
+                    GUI.ACTION.LEFT,
+                    GUI.ACTION.SELECT,
+                    GUI.ACTION.PAUSE,
+                    GUI.ACTION.SPACE,
+                    GUI.ACTION.NONE,
+                    GUI.ACTION.NONE,
+            };
 
-        for (int i = 0; i < keyStrokes.length; i++) {
-            when(screen.pollInput()).thenReturn(keyStrokes[i]);
-            GUI.ACTION action = graphics.getNextAction();
-            assertEquals(expectedActions[i], action);
-        }
+            for (int i = 0; i < keyStrokes.length; i++) {
+                when(screen.pollInput()).thenReturn(keyStrokes[i]);
+                GUI.ACTION action = graphics.getNextAction();
+                assertEquals(expectedActions[i], action);
+            }
+        });
     }
 
     @Test
-    void testDrawCharacters() throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.drawCharacters();
-        verifyDrawCharacter("#00FF00", 6);
+    void testDrawCharacters(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.drawCharacters();
+            verifyDrawCharacter("#00FF00", 6);
+        });
     }
 
     @Test
-    void testDrawFruits() throws IOException {
-        Graphics graphics = createGraphics();
-        Position position = new Position(33, 15);
-        graphics.drawAppleFruit(position);
-        graphics.drawBananaFruit(position);
-        graphics.drawPineappleFruit(position);
-        graphics.drawCherryFruit(position);
-        graphics.drawStrawberryFruit(position);
-        verifyDrawCharacter(5);
+    void testDrawFruits(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Position position = new Position(33, 15);
+            graphics.drawAppleFruit(position);
+            graphics.drawBananaFruit(position);
+            graphics.drawPineappleFruit(position);
+            graphics.drawCherryFruit(position);
+            graphics.drawStrawberryFruit(position);
+            verifyDrawCharacter(5);
+        });
     }
 
     @Property
-    void testDrawMonster(@ForAll("actions") GUI.ACTION action) throws IOException {
-        Graphics graphics = createGraphics();
-        Position position = new Position(33, 15);
-        graphics.drawJumperMonster(position, action);
-        graphics.drawWallBreakerMonster(position, action);
-        verifyDrawCharacter(2);
+    void testDrawMonster(@ForAll("actions") GUI.ACTION action){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Position position = new Position(33, 15);
+            graphics.drawJumperMonster(position, action);
+            graphics.drawWallBreakerMonster(position, action);
+            verifyDrawCharacter(2);
+        });
     }
 
     @Property
-    void testDrawRunnerMonster(@ForAll boolean isRunner) throws IOException {
-        Graphics graphics = createGraphics();
-        Position position = new Position(33, 15);
-        graphics.drawRunnerMonster(position, GUI.ACTION.UP, isRunner);
-        String color = isRunner ? "#FF0000" : "#FFFF66";
-        char c = isRunner ? '3' : '1';
-        verifyDrawCharacter(position, c, color);
-        graphics.drawRunnerMonster(position, GUI.ACTION.LEFT, isRunner);
-        c = isRunner ? 'X' : 'W';
-        verifyDrawCharacter(position, c, color);
-        graphics.drawRunnerMonster(position, GUI.ACTION.RIGHT, isRunner);
-        c = isRunner ? '}' : '2';
-        verifyDrawCharacter(position, c, color);
-        graphics.drawRunnerMonster(position, GUI.ACTION.NONE, isRunner);
-        c = isRunner ? '|' : 'V';
-        verifyDrawCharacter(position, c, color);
+    void testDrawRunnerMonster(@ForAll boolean isRunner){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Position position = new Position(33, 15);
+            graphics.drawRunnerMonster(position, GUI.ACTION.UP, isRunner);
+            String color = isRunner ? "#FF0000" : "#FFFF66";
+            char c = isRunner ? '3' : '1';
+            verifyDrawCharacter(position, c, color);
+            graphics.drawRunnerMonster(position, GUI.ACTION.LEFT, isRunner);
+            c = isRunner ? 'X' : 'W';
+            verifyDrawCharacter(position, c, color);
+            graphics.drawRunnerMonster(position, GUI.ACTION.RIGHT, isRunner);
+            c = isRunner ? '}' : '2';
+            verifyDrawCharacter(position, c, color);
+            graphics.drawRunnerMonster(position, GUI.ACTION.NONE, isRunner);
+            c = isRunner ? '|' : 'V';
+            verifyDrawCharacter(position, c, color);
+        });
     }
 
     @Test
-    void testDawStoneWall() throws IOException {
-        Graphics graphics = createGraphics();
-        Position position = new Position(33, 15);
-        graphics.drawStoneWall(position);
-        verifyDrawCharacter(position, 'G', "#696969");
+    void testDawStoneWall(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Position position = new Position(33, 15);
+            graphics.drawStoneWall(position);
+            verifyDrawCharacter(position, 'G', "#696969");
+        });
     }
 
     @Test
-    void testClear() throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.clear();
-        verify(screen, times(1)).clear();
+    void testClear(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.clear();
+            verify(screen, times(1)).clear();
+        });
     }
     @Test
-    void testRefresh() throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.refresh();
-        verify(screen, times(1)).refresh();
+    void testRefresh(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.refresh();
+            verify(screen, times(1)).refresh();
+        });
     }
     @Test
-    void testClose() throws IOException {
-        Graphics graphics = createGraphics();
-        graphics.close();
-        verify(screen, times(1)).close();
+    void testClose(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            graphics.close();
+            verify(screen, times(1)).close();
+        });
     }
 
     @Test
-    void testDrawText() throws IOException {
-        Graphics graphics = createGraphics();
-        Position position = new Position(33, 15);
-        graphics.drawText(position, "Hello", "#FF0000");
-        verify(textGraphics, times(1)).setForegroundColor(eq(TextColor.Factory.fromString("#FF0000")));
-        verify(textGraphics, times(1)).putString(eq(position.getX()), eq(position.getY()), eq("Hello"));
+    void testDrawText(){
+        assertAll(() -> {
+            Graphics graphics = createGraphics();
+            Position position = new Position(33, 15);
+            graphics.drawText(position, "Hello", "#FF0000");
+            verify(textGraphics, times(1)).setForegroundColor(eq(TextColor.Factory.fromString("#FF0000")));
+            verify(textGraphics, times(1)).putString(eq(position.getX()), eq(position.getY()), eq("Hello"));
+        });
     }
 }

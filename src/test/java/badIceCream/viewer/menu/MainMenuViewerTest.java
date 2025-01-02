@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 public class MainMenuViewerTest {
@@ -34,13 +35,15 @@ public class MainMenuViewerTest {
     }
 
     @Test
-    public void testDrawElements() throws Exception {
-        viewer.draw(graphics);
+    public void testDrawElements() {
+        assertAll(() -> {
+            viewer.draw(graphics);
 
-        verify(graphics, atLeast(54)).drawText(any(), anyString(), anyString());
+            verify(graphics, atLeast(54)).drawText(any(), anyString(), anyString());
 
-        verify(graphics, times(1)).drawText(eq(new Position(63, 20)), anyString(), eq("#D1D100"));
-        verify(graphics, times(1)).drawText(eq(new Position(63, 28)), anyString(), eq("#FFFFFF"));
+            verify(graphics, times(1)).drawText(eq(new Position(63, 20)), anyString(), eq("#D1D100"));
+            verify(graphics, times(1)).drawText(eq(new Position(63, 28)), anyString(), eq("#FFFFFF"));
+        });
     }
 }
 

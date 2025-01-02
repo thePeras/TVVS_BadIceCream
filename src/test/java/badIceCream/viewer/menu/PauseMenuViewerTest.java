@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 public class PauseMenuViewerTest {
@@ -39,13 +40,15 @@ public class PauseMenuViewerTest {
     }
 
     @Test
-    public void testDrawElements() throws Exception {
-        viewer.draw(graphics);
+    public void testDrawElements() {
+        assertAll(() -> {
+            viewer.draw(graphics);
 
-        verify(graphics, atLeast(53)).drawText(any(), anyString(), anyString());
+            verify(graphics, atLeast(53)).drawText(any(), anyString(), anyString());
 
-        verify(graphics, times(1)).drawText(eq(new Position(68, 21)), anyString(), eq("#D1D100"));
-        verify(graphics, times(1)).drawText(eq(new Position(68, 24)), anyString(), eq("#FFFFFF"));
+            verify(graphics, times(1)).drawText(eq(new Position(68, 21)), anyString(), eq("#D1D100"));
+            verify(graphics, times(1)).drawText(eq(new Position(68, 24)), anyString(), eq("#FFFFFF"));
+        });
     }
 }
 

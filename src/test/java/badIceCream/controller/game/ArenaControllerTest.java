@@ -15,10 +15,10 @@ import badIceCream.utils.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 public class ArenaControllerTest {
@@ -61,75 +61,89 @@ public class ArenaControllerTest {
     }
 
     @Test
-    public void testStepWithFruit() throws IOException {
-        when(iceCreamController.eatFruit()).thenReturn(5);
-        when(arena.getIceCream().isStrawberryActive()).thenReturn(false);
+    public void testStepWithFruit() {
+        assertAll(() -> {
+            when(iceCreamController.eatFruit()).thenReturn(5);
+            when(arena.getIceCream().isStrawberryActive()).thenReturn(false);
 
-        arenaController.step(game, GUI.ACTION.NONE, 5000L);
+            arenaController.step(game, GUI.ACTION.NONE, 5000L);
 
-        verify(arena.getIceCream()).setStrawberry(true);
+            verify(arena.getIceCream()).setStrawberry(true);
+        });
     }
 
     @Test
-    public void testStepWithStrawberryTimeout() throws IOException {
-        when(iceCreamController.eatFruit()).thenReturn(-1);
-        when(arena.getIceCream().isStrawberryActive()).thenReturn(true);
+    public void testStepWithStrawberryTimeout() {
+        assertAll(() -> {
+            when(iceCreamController.eatFruit()).thenReturn(-1);
+            when(arena.getIceCream().isStrawberryActive()).thenReturn(true);
 
-        arenaController.step(game, GUI.ACTION.NONE, 15000L);
+            arenaController.step(game, GUI.ACTION.NONE, 15000L);
 
-        verify(arena.getIceCream()).setStrawberry(false);
+            verify(arena.getIceCream()).setStrawberry(false);
+        });
     }
 
     @Test
-    public void testStepWhenFruitsAreEmptyLevelCompleted() throws IOException {
-        when(arena.getFruits()).thenReturn(new ArrayList<>());
-        when(arena.getLevel()).thenReturn(2);
-        when(game.getState().getLevel()).thenReturn(1);
+    public void testStepWhenFruitsAreEmptyLevelCompleted() {
+        assertAll(() -> {
+            when(arena.getFruits()).thenReturn(new ArrayList<>());
+            when(arena.getLevel()).thenReturn(2);
+            when(game.getState().getLevel()).thenReturn(1);
 
-        arenaController.step(game, GUI.ACTION.NONE, 5000L);
-        verify(arena).generateNewFruits(2);
-        arenaController.step(game, GUI.ACTION.NONE, 5000L);
+            arenaController.step(game, GUI.ACTION.NONE, 5000L);
+            verify(arena).generateNewFruits(2);
+            arenaController.step(game, GUI.ACTION.NONE, 5000L);
 
-        verify(game).setState(any(LevelCompletedMenuState.class), eq(Type.win), eq(140), eq(50));
+            verify(game).setState(any(LevelCompletedMenuState.class), eq(Type.win), eq(140), eq(50));
+        });
     }
 
     @Test
-    public void testStepWhenIceCreamIsDead() throws IOException {
-        when(iceCream.getAlive()).thenReturn(false);
+    public void testStepWhenIceCreamIsDead() {
+        assertAll(() -> {
+            when(iceCream.getAlive()).thenReturn(false);
 
-        arenaController.step(game, GUI.ACTION.NONE, 5000L);
-        verify(game).setState(any(GameOverMenuState.class), eq(Type.gameOver), eq(140), eq(50));
+            arenaController.step(game, GUI.ACTION.NONE, 5000L);
+            verify(game).setState(any(GameOverMenuState.class), eq(Type.gameOver), eq(140), eq(50));
+        });
     }
 
     @Test
-    public void testStepWhenPaused() throws IOException {
-        when(iceCream.getAlive()).thenReturn(true);
+    public void testStepWhenPaused() {
+        assertAll(() -> {
+            when(iceCream.getAlive()).thenReturn(true);
 
-        arenaController.step(game, GUI.ACTION.PAUSE, 5000L);
+            arenaController.step(game, GUI.ACTION.PAUSE, 5000L);
 
-        verify(game).setState(any(PauseMenuState.class), eq(Type.menu), eq(140), eq(50));
+            verify(game).setState(any(PauseMenuState.class), eq(Type.menu), eq(140), eq(50));
+        });
     }
 
     @Test
-    public void testStepNormal() throws IOException {
-        when(arena.getFruits()).thenReturn(new ArrayList<>(List.of(mock(Fruit.class))));
+    public void testStepNormal() {
+        assertAll(() -> {
+            when(arena.getFruits()).thenReturn(new ArrayList<>(List.of(mock(Fruit.class))));
 
-        IceCream iceCream = mock(IceCream.class);
-        when(iceCream.getAlive()).thenReturn(true);
-        when(arena.getIceCream()).thenReturn(iceCream);
+            IceCream iceCream = mock(IceCream.class);
+            when(iceCream.getAlive()).thenReturn(true);
+            when(arena.getIceCream()).thenReturn(iceCream);
 
-        arenaController.step(game, GUI.ACTION.NONE, 5000L);
+            arenaController.step(game, GUI.ACTION.NONE, 5000L);
 
-        verify(iceCreamController).step(game, GUI.ACTION.NONE, 5000L);
+            verify(iceCreamController).step(game, GUI.ACTION.NONE, 5000L);
+        });
     }
 
     @Test
-    public void testStepMonsters() throws IOException {
-        arenaController.stepMonsters(5000L);
+    public void testStepMonsters() {
+        assertAll(() -> {
+            arenaController.stepMonsters(5000L);
 
-        for (Monster monster : arena.getMonsters()) {
-            verify(monster, atLeast(3)).getType();
-        }
+            for (Monster monster : arena.getMonsters()) {
+                verify(monster, atLeast(3)).getType();
+            }
+        });
     }
 }
 

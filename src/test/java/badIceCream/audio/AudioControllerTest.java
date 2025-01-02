@@ -10,22 +10,6 @@ import javax.sound.sampled.*;
 import static org.mockito.Mockito.*;
 
 public class AudioControllerTest {
-    private MockedStatic<Audio> audioMockedStatic;
-    private Clip mockClip;
-
-    @BeforeProperty
-    public void setUp() {
-        mockClip = mock(Clip.class);
-        audioMockedStatic = Mockito.mockStatic(Audio.class);
-        audioMockedStatic.when(() -> Audio.loadMusic(anyString())).thenReturn(mockClip);
-    }
-
-    @AfterProperty
-    public void tearDown() {
-        reset(mockClip);
-        audioMockedStatic.close();
-    }
-
     @Provide
     public Arbitrary<StartStopPair> startStopMethods() {
         return Arbitraries.of(
@@ -55,22 +39,26 @@ public class AudioControllerTest {
 
     @Property
     public void testPlayMethods(@ForAll("startStopMethods") StartStopPair pair) {
-        Runnable startMethod = pair.startMethod();
-        Runnable stopMethod = pair.stopMethod();
+        try(MockedStatic<Audio> mockedStatic = mockStatic(Audio.class)){
+            Clip mockClip = mock(Clip.class);
+            mockedStatic.when(() -> Audio.loadMusic(anyString())).thenReturn(mockClip);
+            Runnable startMethod = pair.startMethod();
+            Runnable stopMethod = pair.stopMethod();
 
-        if(stopMethod != null) {
-            stopMethod.run();
-            verify(mockClip, never()).stop();
-        }
-        startMethod.run();
-        verify(mockClip, times(1)).start();
-        startMethod.run();
-        verify(mockClip, times(2)).start();
-        if(stopMethod != null) {
-            stopMethod.run();
-            verify(mockClip, times(1)).stop();
-        }
-        reset(mockClip);
+            if (stopMethod != null) {
+                stopMethod.run();
+                verify(mockClip, never()).stop();
+            }
+            startMethod.run();
+            verify(mockClip, times(1)).start();
+            startMethod.run();
+            verify(mockClip, times(2)).start();
+            if (stopMethod != null) {
+                stopMethod.run();
+                verify(mockClip, times(1)).stop();
+            }
+            reset(mockClip);
+        };
     }
 
     public record StartStopPair(Runnable startMethod, Runnable stopMethod) {

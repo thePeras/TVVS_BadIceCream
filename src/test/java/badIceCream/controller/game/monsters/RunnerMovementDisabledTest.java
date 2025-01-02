@@ -6,35 +6,39 @@ import badIceCream.model.game.elements.IceCream;
 import badIceCream.model.game.elements.monsters.Monster;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 class RunnerMovementDisabledTest {
     @Test
-    void testStepTimeBoundary() throws IOException {
-        Monster monster = mock(Monster.class);
+    void testStepTimeBoundary() {
+        assertAll(() -> {
+            Monster monster = mock(Monster.class);
 
-        RunnerMovementDisabled movement = new RunnerMovementDisabled();
-        Arena arena = new Arena(2, 2);
-        movement.step(monster, arena, 100, 50);
-        verify(monster, never()).setLastAction(any());
-        verify(monster, never()).setPosition(any());
+            RunnerMovementDisabled movement = new RunnerMovementDisabled();
+            Arena arena = new Arena(2, 2);
+            movement.step(monster, arena, 100, 50);
+            verify(monster, never()).setLastAction(any());
+            verify(monster, never()).setPosition(any());
+        });
     }
 
     @Test
-    void testStepTimeBoundary2() throws IOException {
-        Monster monster = mock(Monster.class);
-        when(monster.getPosition()).thenReturn(new Position(1, 1));
+    void testStepTimeBoundary2() {
+        assertAll(() -> {
+            Monster monster = mock(Monster.class);
+            when(monster.getPosition()).thenReturn(new Position(1, 1));
 
-        RunnerMovementDisabled movement = new RunnerMovementDisabled();
-        Arena arena = new Arena(2, 2);
-        arena.setIceCream(new IceCream(1, 1));
-        arena.setWalls(new ArrayList<>());
-        arena.setMonsters(new ArrayList<>());
+            RunnerMovementDisabled movement = new RunnerMovementDisabled();
+            Arena arena = new Arena(2, 2);
+            arena.setIceCream(new IceCream(1, 1));
+            arena.setWalls(new ArrayList<>());
+            arena.setMonsters(new ArrayList<>());
 
-        movement.step(monster, arena, 150, 0);
-        verify(monster, atLeast(1)).setLastAction(any());
+            movement.step(monster, arena, 150, 0);
+            verify(monster, atLeast(1)).setLastAction(any());
+        });
     }
 }

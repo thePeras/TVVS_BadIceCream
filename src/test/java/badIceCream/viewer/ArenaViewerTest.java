@@ -12,10 +12,10 @@ import badIceCream.model.game.elements.monsters.Monster;
 import net.jqwik.api.*;
 import net.jqwik.api.lifecycle.BeforeProperty;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 public class ArenaViewerTest {
@@ -268,12 +268,14 @@ public class ArenaViewerTest {
     }
 
     @Property
-    void testGuiClearAndRefresh() throws IOException {
-        ArenaViewer arenaViewer = new ArenaViewer(arena, fruitViewer, monsterViewer, wallViewer, hotFloorViewer, iceCreamViewer);
-        Graphics graphics = mock(Graphics.class);
-        arenaViewer.draw(graphics);
+    void testGuiClearAndRefresh() {
+        assertAll(() -> {
+            ArenaViewer arenaViewer = new ArenaViewer(arena, fruitViewer, monsterViewer, wallViewer, hotFloorViewer, iceCreamViewer);
+            Graphics graphics = mock(Graphics.class);
+            arenaViewer.draw(graphics);
 
-        verify(graphics, times(1)).clear();
-        verify(graphics, times(1)).refresh();
+            verify(graphics, times(1)).clear();
+            verify(graphics, times(1)).refresh();
+        });
     }
 }

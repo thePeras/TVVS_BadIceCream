@@ -7,45 +7,33 @@ import badIceCream.states.InstructionsMenuFirstPageState;
 import badIceCream.states.InstructionsMenuSecondPageState;
 import badIceCream.states.MainMenuState;
 import badIceCream.utils.Type;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
-import java.io.IOException;
-
 public class InstructionsMenuSecondPageControllerTest {
+    @Property
+    public void testStepActions(@ForAll GUI.ACTION action) {
+        assertAll(() -> {
+            InstructionsMenuSecondPage model = mock(InstructionsMenuSecondPage.class);
+            Game game = mock(Game.class);
+            when(game.getState()).thenReturn(new InstructionsMenuSecondPageState(model, 1));
+            InstructionsMenuSecondPageController controller = new InstructionsMenuSecondPageController(model);
 
-    private InstructionsMenuSecondPageController controller;
-    private Game game;
-    private GUI.ACTION action;
+            controller.step(game, action, 0);
 
-    @BeforeEach
-    public void setUp() {
-        InstructionsMenuSecondPage model = mock(InstructionsMenuSecondPage.class);
-        game = mock(Game.class);
-        when(game.getState()).thenReturn(new InstructionsMenuSecondPageState(model, 1));
-        controller = new InstructionsMenuSecondPageController(model);
-        action = GUI.ACTION.PAUSE;
-    }
-
-    @Test
-    public void testStepWithPauseAction() throws IOException {
-        controller.step(game, action, 0);
-        verify(game).setState(any(MainMenuState.class), eq(Type.nulo), eq(0), eq(0));
-    }
-
-    @Test
-    public void testStepWithLeftAction() throws IOException {
-        action = GUI.ACTION.LEFT;
-        controller.step(game, action, 0);
-        verify(game).setState(any(InstructionsMenuFirstPageState.class), eq(Type.nulo), eq(0), eq(0));
-    }
-
-    @Test
-    public void testStepWithInvalidAction() throws IOException {
-        action = GUI.ACTION.RIGHT;
-        controller.step(game, action, 0);
-        verifyNoInteractions(game);
+            switch (action) {
+                case PAUSE:
+                    verify(game).setState(any(MainMenuState.class), eq(Type.nulo), eq(0), eq(0));
+                    break;
+                case LEFT:
+                    verify(game).setState(any(InstructionsMenuFirstPageState.class), eq(Type.nulo), eq(0), eq(0));
+                    break;
+                default:
+                    verifyNoInteractions(game);
+            }
+        });
     }
 }

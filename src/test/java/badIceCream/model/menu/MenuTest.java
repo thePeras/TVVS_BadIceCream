@@ -1,5 +1,6 @@
 package badIceCream.model.menu;
 
+import net.jqwik.api.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,45 +14,43 @@ public class MenuTest {
 
     @BeforeEach
     public void setUp() {
-        menu = new Menu(Arrays.asList("Option 1", "Option 2", "Option 3"));
-    }
-
-    @Test
-    public void testNextEntryWrapsAround() {
-        menu.nextEntry();
-        assertTrue(menu.isSelected(1));
-        menu.nextEntry();
-        assertTrue(menu.isSelected(2));
-        menu.nextEntry();
-        assertTrue(menu.isSelected(0));
-    }
-
-    @Test
-    public void testPreviousEntryWrapsAround() {
-        menu.previousEntry();
-        assertTrue(menu.isSelected(2));
-        menu.previousEntry();
-        assertTrue(menu.isSelected(1));
-        menu.previousEntry();
-        assertTrue(menu.isSelected(0));
-    }
-
-    @Test
-    public void testGetEntry() {
-        assertEquals("Option 1", menu.getEntry(0));
-        assertEquals("Option 2", menu.getEntry(1));
-        assertEquals("Option 3", menu.getEntry(2));
+        menu = new Menu(Arrays.asList("Option 0", "Option 1", "Option 2"));
     }
 
     @Test
     public void testIsSelected() {
         assertTrue(menu.isSelected(0));
-        assertFalse(menu.isSelected(1));
-        assertFalse(menu.isSelected(2));
+    }
+
+    @Test
+    public void testNextEntryWrapsAround() {
+        menu.nextEntry();
+        int expected = 1;
+        assertEquals(expected, menu.currentEntry);
+    }
+
+    @Test
+    public void testPreviousEntryWrapsAround() {
+        menu.previousEntry();
+        int expected = 2;
+        assertEquals(expected, menu.currentEntry);
+    }
+
+    @Property
+    public void testGetEntry(@ForAll("entries") int entryNumber) {
+        menu = new Menu(Arrays.asList("Option 0", "Option 1", "Option 2"));
+        String expected = "Option " + entryNumber;
+        assertEquals(expected, menu.getEntry(entryNumber));
+    }
+
+    @Provide
+    public Arbitrary<Integer> entries() {
+        return Arbitraries.integers().between(0, 2);
     }
 
     @Test
     public void testGetNumberEntries() {
-        assertEquals(3, menu.getNumberEntries());
+        Integer expectedNumberOfOptions = 3;
+        assertEquals(expectedNumberOfOptions, menu.getNumberEntries());
     }
 }

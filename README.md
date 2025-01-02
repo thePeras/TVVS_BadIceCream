@@ -8,7 +8,6 @@ Read the [Project.md](docs/Project.md) file to learn more about the game.
 
 - (future link)
 - (future link)
-- (future link)
 
 ## Evaluation Formula
 

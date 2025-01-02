@@ -10,10 +10,10 @@ import badIceCream.model.game.elements.Wall;
 import badIceCream.model.game.elements.monsters.Monster;
 import net.jqwik.api.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.never;
@@ -21,28 +21,32 @@ import static org.mockito.Mockito.never;
 public class StepMonstersTest {
     @Property
     void testStepWithMultipleArenas(@ForAll("arenaScenarios") ArenaScenario scenario,
-                                    @ForAll("movementStrategies") StepMonsters movementStrategy) throws IOException {
-        Monster monster = mock(Monster.class);
-        when(monster.getPosition()).thenReturn(new Position(1, 1));
-        scenario.arena.setMonsters(new ArrayList<>(List.of(monster)));
+                                    @ForAll("movementStrategies") StepMonsters movementStrategy) {
+        assertAll(() -> {
+            Monster monster = mock(Monster.class);
+            when(monster.getPosition()).thenReturn(new Position(1, 1));
+            scenario.arena.setMonsters(new ArrayList<>(List.of(monster)));
 
-        movementStrategy.step(monster, scenario.arena, 225, 0);
-        verify(monster).setLastAction(scenario.expectedAction);
-        verify(monster).setPosition(scenario.expectedPosition);
+            movementStrategy.step(monster, scenario.arena, 225, 0);
+            verify(monster).setLastAction(scenario.expectedAction);
+            verify(monster).setPosition(scenario.expectedPosition);
+        });
     }
 
     @Property
-    void testFullArena(@ForAll("movementStrategies") StepMonsters movementStrategy) throws IOException {
-        Monster monster = mock(Monster.class);
-        when(monster.getPosition()).thenReturn(new Position(1, 1));
+    void testFullArena(@ForAll("movementStrategies") StepMonsters movementStrategy) {
+        assertAll(() -> {
+            Monster monster = mock(Monster.class);
+            when(monster.getPosition()).thenReturn(new Position(1, 1));
 
-        Arena arena = new Arena(3, 3);
-        arena.setWalls(List.of(new StoneWall(0, 1), new StoneWall(2, 1), new StoneWall(1, 0), new StoneWall(1, 2)));
-        arena.setIceCream(new IceCream(0, 0));
+            Arena arena = new Arena(3, 3);
+            arena.setWalls(List.of(new StoneWall(0, 1), new StoneWall(2, 1), new StoneWall(1, 0), new StoneWall(1, 2)));
+            arena.setIceCream(new IceCream(0, 0));
 
-        movementStrategy.step(monster, arena, 225, 0);
-        verify(monster, never()).setLastAction(any());
-        verify(monster, never()).setPosition(any());
+            movementStrategy.step(monster, arena, 225, 0);
+            verify(monster, never()).setLastAction(any());
+            verify(monster, never()).setPosition(any());
+        });
     }
 
     @Provide

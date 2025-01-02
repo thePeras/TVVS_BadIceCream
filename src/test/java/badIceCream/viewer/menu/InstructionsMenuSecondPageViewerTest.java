@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.*;
 
 public class InstructionsMenuSecondPageViewerTest {
@@ -33,10 +34,12 @@ public class InstructionsMenuSecondPageViewerTest {
     }
 
     @Test
-    public void testDrawElements() throws Exception {
-        viewer.draw(graphics);
-        verify(graphics, times(1)).drawCharacters();
-        verify(graphics, times(44)).drawText(any(), anyString(), anyString());
+    public void testDrawElements() {
+        assertAll(() -> {
+            viewer.draw(graphics);
+            verify(graphics, times(1)).drawCharacters();
+            verify(graphics, times(44)).drawText(any(), anyString(), anyString());
+        });
     }
 }
 

@@ -37,6 +37,7 @@ class IceCreamControllerTest {
     }
 
 
+
     @Test
     public void testEatFruit(){
         Arena arena = mock(Arena.class);
@@ -49,7 +50,8 @@ class IceCreamControllerTest {
         int fruits = iceCreamController.eatFruit();
 
         verify(arena, times(1)).eatFruit(any());
-        assertEquals(fruits, 1);
+        int expectedNumberOfFruits = 1;
+        assertEquals(fruits, expectedNumberOfFruits);
     }
 }
 
