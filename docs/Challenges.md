@@ -35,4 +35,4 @@ Mutation failed to kill the mutant that removed the printStackTrace().
 
 ### Challenge 8: Random()
 
-Random without seed and depency injection is unpredictable to test.
+Random without seed and dependency injection is unpredictable to test.

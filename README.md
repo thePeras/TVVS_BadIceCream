@@ -2,13 +2,14 @@
 
 ## About the game
 
-Read the [Project.md](docs/Project.md) file to learn more about the game.
+I am not the author of the game. The game was developed by 3 students in LDTS course.
+Read the [Project.md](docs/LDTS-Project.md) file to learn more about the game.
 
 ## Current Reports
 
 - [Jacoco report](https://theperas.github.io/tvvs/reports/jacoco/index.html)
 - [PITest report](https://theperas.github.io/tvvs/reports/pitest/index.html)
-- [Smelliness report](reports/tsdetector-output.csv)
+- [Smelliness report](https://theperas.github.io/tvvs/reports/smelliness/index.html)
 
 ## Evaluation Formula
 
