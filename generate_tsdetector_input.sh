@@ -4,7 +4,7 @@ PROJECT_NAME="BadIceCream"
 BASE_FOLDER=""
 TEST_FOLDER="src/test/java"
 MAIN_FOLDER="src/main/java"
-OUTPUT_CSV="tsdetector-input.csv"
+OUTPUT_CSV="tsdetector-input-full.csv"
 
 echo "Generating $OUTPUT_CSV..."
 > "$OUTPUT_CSV"

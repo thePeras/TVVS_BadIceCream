@@ -28,6 +28,12 @@ Read the [Project.md](docs/Project.md) file to learn more about the game.
 
 <img src="docs/resources/smelliness_formula.png" alt="smelliness" width="300"/>
 
+## Final Results
+
+- branch coverage = 95%
+- mutation score = 95%
+- smelliness = 4.910714285714286% ≈ 5%
+
 ## Commands
 
 ### Generate Jacoco report
@@ -46,17 +52,14 @@ mvn -DwithHistory test-compile org.pitest:pitest-maven:mutationCoverage
 
 ### Generate smelliness report
 
+Generate tsdetector-input-full.csv file
+```bash
+sudo ./generate-smelliness-report.sh
+```
+
+Remove all test suites files from tsdetector-input-full.csv where class under cover does not work in java <= 9.
+Rename it to tsdetector-input.csv
+
 ```bash
 java -jar TestSmellDetector.jar --file tsdetector-input.csv --thresholds spadini --granularity boolean --output tsdetector-output.csv
 ```
-
-## Roadmap
-
-- [x] Smelliness script to generate .csv file
-- [ ] Create CI pipeline to
-  - [ ] Build the game
-  - [ ] Run the tests
-  - [ ] Generate the reports (jacoco / pitest / smelliness)
-  - [ ] Get values from the reports and update the README with the results and fail if the results are below 10/20
-- [ ] Generate automatic tests
-- [ ] Plan the Tests Strategy?

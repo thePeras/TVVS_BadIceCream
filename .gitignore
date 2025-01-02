@@ -41,3 +41,4 @@ htmlReport/
 .jqwik-database
 tsdetector-input.csv
 tsdetector-output.csv
+tsdetector-input-full.csv
