@@ -6,8 +6,9 @@ Read the [Project.md](docs/Project.md) file to learn more about the game.
 
 ## Current Reports
 
-- [Jacoco report](reports/jacoco/index.html)
-- [PITest report](reports/pitest/index.html)
+- [Jacoco report](https://theperas.github.io/tvvs/reports/jacoco/index.html)
+- [PITest report](https://theperas.github.io/tvvs/reports/pitest/index.html)
+- [Smelliness report](reports/tsdetector-output.csv)
 
 ## Evaluation Formula
 
@@ -41,18 +42,21 @@ Read the [Project.md](docs/Project.md) file to learn more about the game.
 ```bash
 mvn test jacoco:report
 ```
->target/site/jacoco/index.html
+
+> target/site/jacoco/index.html
 
 ### Generate PITest report
 
 ```bash
 mvn -DwithHistory test-compile org.pitest:pitest-maven:mutationCoverage
 ```
->target/pit-reports/index.html
+
+> target/pit-reports/index.html
 
 ### Generate smelliness report
 
 Generate tsdetector-input-full.csv file
+
 ```bash
 sudo ./generate-smelliness-report.sh
 ```
