@@ -1,8 +1,23 @@
 # Testing Bad Ice Cream
 
+> **Project** <br />
+> Course Unit: [Software Testing Verification and Validation](https://sigarra.up.pt/feup/en/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=537128 "Software Testing Verification and Validation"), 1nd year
+> <br />
+> Course: [Master in Software Engineering](https://sigarra.up.pt/feup/en/cur_geral.cur_view?pv_curso_id=10861&pv_ano_lectivo=2024) <br />
+> Faculty: **FEUP** (Faculty of Engineering of the University of Porto)
+> <br/>
+> Project evaluation: **19**/20
+
+## Project Goals
+
+The high-level goals of this lab project are:
+
+1. To learn about systematic unit testing.
+2. To reason about test quality, using different criteria, i.e., code coverage, mutation score, and smelliness of a developed test suite.
+
 ## About the game
 
-I am not the author of the game. The game was developed by 3 students in LDTS course.
+I am not the author of the game. The game was developed by 3 students in [LDTS course unit](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=520319).
 Read the [Project.md](docs/LDTS-Project.md) file to learn more about the game.
 
 ## Current Reports
@@ -36,6 +51,9 @@ Read the [Project.md](docs/LDTS-Project.md) file to learn more about the game.
 - mutation score = 95%
 - smelliness = 4.910714285714286% ≈ 5%
 
+- ꭓ = 1.004
+- 𝛼 = 1.009
+
 ## Commands
 
 ### Generate Jacoco report
@@ -68,3 +86,12 @@ Rename it to tsdetector-input.csv
 ```bash
 java -jar TestSmellDetector.jar --file tsdetector-input.csv --thresholds spadini --granularity boolean --output tsdetector-output.csv
 ```
+
+## Technologies used
+
+<div>
+<img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java" title="Java"/>
+<img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/maven.png" alt="Maven" title="Maven"/>
+<img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/junit.png" alt="JUnit" title="JUnit"/>
+<img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/mocikto.png" alt="Mockito" title="Mockito"/>
+</div>
